@@ -5,13 +5,14 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/Robert076/logger/logger-service/db"
 	model "github.com/Robert076/logger/logger-service/ping"
 )
 
 func main() {
 	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
-			http.Error(w, "Only POST methods are allowed on this endpoint.", http.StatusMethodNotAllowed)
+			http.Error(w, "Only POST method is allowed on this endpoint.", http.StatusMethodNotAllowed)
 			return
 		}
 
@@ -32,7 +33,22 @@ func main() {
 		}
 	})
 
-	if err := http.ListenAndServe(":0607", nil); err != nil {
+	http.HandleFunc("/pings", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet {
+			http.Error(w, "Only GET method is allowed on this endpoint", http.StatusMethodNotAllowed)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		pings := db.GetPingsFromDatabase()
+
+		if err := json.NewEncoder(w).Encode(pings); err != nil {
+			http.Error(w, "Failed to encode pings", http.StatusInternalServerError)
+			return
+		}
+	})
+
+	if err := http.ListenAndServe(":1234", nil); err != nil {
 		log.Fatalf("Cannot start server: %v", err)
 		return
 	}
