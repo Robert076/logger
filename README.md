@@ -12,6 +12,8 @@ Contains 2 main services: One *spams* the other while the other *logs* the messa
 
 ### 🏁 Running the app ***(locally, using minikube and macOS)***
 
+**NOTE: the project is not yet finished**
+
 1. Clone the repository:
 
 ```bash
