@@ -27,20 +27,32 @@ func main() {
 			return
 		}
 
+		id, err := db.InsertPing(newPing.Message)
+
+		if err != nil {
+			http.Error(w, "Error inserting ping into database.", http.StatusInternalServerError)
+			return
+		}
+
 		w.WriteHeader(http.StatusOK)
-		if err := json.NewEncoder(w).Encode(newPing); err != nil {
-			http.Error(w, "Error encoding message.", http.StatusInternalServerError)
+		if err := json.NewEncoder(w).Encode(id); err != nil {
+			http.Error(w, "Error encoding new id.", http.StatusInternalServerError)
 		}
 	})
 
 	http.HandleFunc("/pings", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodGet {
-			http.Error(w, "Only GET method is allowed on this endpoint", http.StatusMethodNotAllowed)
+			http.Error(w, "Only GET method is allowed on this endpoint.", http.StatusMethodNotAllowed)
 			return
 		}
 
 		w.Header().Set("Content-Type", "application/json")
-		pings := db.GetPingsFromDatabase()
+		pings, err := db.GetPingsFromDatabase()
+
+		if err != nil {
+			http.Error(w, "Error retrieving pings from database.", http.StatusInternalServerError)
+			return
+		}
 
 		if err := json.NewEncoder(w).Encode(pings); err != nil {
 			http.Error(w, "Failed to encode pings", http.StatusInternalServerError)
