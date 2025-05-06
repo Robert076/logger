@@ -6,6 +6,6 @@ Contains 2 main services: One *spams* the other while the other *logs* the messa
 - Displays all the logs from its database.
 
 💻 Second service: **Pinger**
-- Pings the *logger service* and sends http post requests with a random message every 5 seconds
+- Pings the *logger service* and sends http post requests with a random message every 5 seconds to that `/ping` route.
 
 
