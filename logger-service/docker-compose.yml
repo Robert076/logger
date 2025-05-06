@@ -1,0 +1,18 @@
+services:
+  database:
+    image: postgres:14-alpine
+    container_name: logger-postgres
+    ports: 
+  pgadmin:
+    image: dpage/pgadmin4:latest
+  logger-service:
+    image: robert076/logger:despicable-me-2
+    container_name: logger-service
+    environment:
+      - PORT=${PORT}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=database                    # bridge network so they see eachother by service name
+    ports:
+      - "0607:0607"
