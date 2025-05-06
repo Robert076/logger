@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logger-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logger-app
+  template:
+    metadata:
+      labels:
+        app: logger-app
+    spec:
+      containers:
+        - name: logger-container
+          image: robert076/logger:despicable-me-2
+          ports:
+            - containerPort: 1234
+          env:
+            - name: "POSTGRES_USER"
+              valueFrom:
+                configMapKeyRef:
+                  name: logger-config
+                  key: POSTGRES_USER
+            - name: "POSTGRES_PASSWORD"
+              valueFrom:
+                configMapKeyRef:
+                  name: logger-config
+                  key: POSTGRES_PASSWORD
+            - name: "POSTGRES_DB"
+              valueFrom:
+                configMapKeyRef:
+                  name: logger-config
+                  key: POSTGRES_DB
+            - name: "PORT"
+              valueFrom:
+                configMapKeyRef:
+                  name: logger-config
+                  key: PORT
+            - name: "HOST"
+              valueFrom:
+                configMapKeyRef:
+                  name: logger-config
+                  key: HOST

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pg-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pg-app
+  template:
+    metadata:
+      labels:
+        app: pg-app
+    spec:
+      containers:
+        - name: pg-admin-container
+          image: dpage/pgadmin4:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: "PGADMIN_DEFAULT_EMAIL"
+              valueFrom:
+                configMapKeyRef:
+                  name: logger-config
+                  key: PGADMIN_DEFAULT_EMAIL
+            - name: "PGADMIN_DEFAULT_PASSWORD"
+              valueFrom:
+                configMapKeyRef:
+                  name: logger-config
+                  key: PGADMIN_DEFAULT_PASSWORD

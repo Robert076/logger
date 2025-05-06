@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -40,6 +41,8 @@ func main() {
 		}
 	})
 
+	log.Println("Hello world!")
+	log.Println("Hello world!2")
 	http.HandleFunc("/pings", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodGet {
 			http.Error(w, "Only GET method is allowed on this endpoint.", http.StatusMethodNotAllowed)
@@ -49,6 +52,7 @@ func main() {
 		w.Header().Set("Content-Type", "application/json")
 		pings, err := db.GetPingsFromDatabase()
 
+		fmt.Println(err)
 		if err != nil {
 			http.Error(w, "Error retrieving pings from database.", http.StatusInternalServerError)
 			return
