@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-ping-table-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: init-ping-table
+          image: postgres:14-alpine
+          command: ["sh", "-c"]
+          args:
+            - |
+              echo "CREATE TABLE IF NOT EXISTS ping (
+                id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+                message VARCHAR,
+                createdat TIMESTAMP DEFAULT NOW()
+              );" | psql -h db-service -U admin -d db
+          env:
+            - name: PGPASSWORD
+              value: admin
+      restartPolicy: OnFailure
