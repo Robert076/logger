@@ -14,6 +14,7 @@ func main() {
 			http.Error(w, "Only POST methods are allowed on this endpoint.", http.StatusMethodNotAllowed)
 			return
 		}
+
 		var newPing model.Ping
 		if err := json.NewDecoder(r.Body).Decode(&newPing); err != nil {
 			http.Error(w, "Invalid JSON format.", http.StatusBadRequest)
