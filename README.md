@@ -52,6 +52,7 @@ kubectl port-forward service/logger-service 8080:8080
 │   ├── 📦 db-deployment.yml                # deployment for the postgres container
 │   ├── 💾 db-pvc.yml                       # persistent volume claim so we don't lose the data from the database
 │   ├── 🌐 db-service.yml                   # k8s service for the database
+│   │── ⚙️ init-ping-table.yml              # k8s job to automatically create the table in he database so program works as expected with no manual intervention
 │   ├── ⚙️ logger-config.yml                # config map for the project's env vars
 │   ├── 📦 logger-deployment.yml            # deployment for the logger service
 │   ├── 🌐 logger-service.yml               # k8s service for the logger
