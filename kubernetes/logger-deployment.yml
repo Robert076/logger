@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: logger-container
-          image: robert076/logger:despicable-me-2
+          image: robert076/logger:image-pull-policy
           ports:
             - containerPort: 1234
           env:
