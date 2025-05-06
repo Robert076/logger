@@ -29,7 +29,7 @@ func main() {
 		}
 
 		if newPing.Message == "" {
-			http.Error(w, "Ping message cannot be empty", http.StatusBadRequest)
+			http.Error(w, "Ping message cannot be empty.", http.StatusBadRequest)
 			return
 		}
 
