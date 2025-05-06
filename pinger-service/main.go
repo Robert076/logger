@@ -32,7 +32,7 @@ func main() {
 			return
 		}
 
-		url := "http://localhost:1234/ping"
+		url := "http://logger-service:8080/ping"
 		resp, err := http.Post(url, "application/json", bytes.NewBuffer(messageJSON))
 		if err != nil {
 			fmt.Println("Error sending HTTP request:", err)

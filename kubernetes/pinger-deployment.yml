@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pinger-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pinger-app
+  template:
+    metadata:
+      labels:
+        app: pinger-app
+    spec:
+      containers:
+        - name: pinger-container
+          image: robert076/pinger:despicable-me-2
