@@ -3,19 +3,13 @@ package db
 import (
 	"database/sql"
 	"fmt"
-	"log"
 	"os"
 
 	model "github.com/Robert076/logger/logger-service/ping"
-	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
 func GetPingsFromDatabase() []model.Ping {
-	if err := godotenv.Load(); err != nil {
-		log.Fatalf("Error loading .env file")
-	}
-
 	host := os.Getenv("HOST")
 	port := os.Getenv("PORT")
 	user := os.Getenv("POSTGRES_USER")
@@ -39,7 +33,7 @@ func GetPingsFromDatabase() []model.Ping {
 		panic(err)
 	}
 
-	rows, err := db.Query("SELECT Id, Text FROM Ping")
+	rows, err := db.Query("SELECT Id, Message FROM Ping")
 
 	if err != nil {
 		panic(err)
