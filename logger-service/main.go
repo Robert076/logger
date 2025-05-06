@@ -4,11 +4,18 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 
 	model "github.com/Robert076/logger/logger-service/ping"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	if err := godotenv.Load(); err != nil {
+		log.Fatalf("Cannot load env file: %v", err)
+		return
+	}
+
 	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
 			http.Error(w, "Only POST methods are allowed on this endpoint.", http.StatusMethodNotAllowed)
@@ -32,7 +39,7 @@ func main() {
 		}
 	})
 
-	if err := http.ListenAndServe(":0607", nil); err != nil {
+	if err := http.ListenAndServe(":"+os.Getenv("PORT"), nil); err != nil {
 		log.Fatalf("Cannot start server: %v", err)
 		return
 	}
