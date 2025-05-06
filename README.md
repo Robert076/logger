@@ -44,30 +44,30 @@ kubectl port-forward service/logger-service 8080:8080
 
 ```bash
 📁 .
-├── 📄 LICENSE
-├── 📄 README.md
+├── 📜 LICENSE
+├── 📘 README.md
 ├── 📁 kubernetes
-│   ├── 📄 db-deployment.yml                # deployment for the postgres container
-│   ├── 📄 db-pvc.yml                       # persistent volume claim so we don't lose the data from the database
-│   ├── 📄 db-service.yml                   # k8s service for the database
-│   ├── 📄 logger-config.yml                # config map for the project's env vars
-│   ├── 📄 logger-deployment.yml            # deployment for the logger service
-│   ├── 📄 logger-service.yml               # k8s service for the logger
-│   ├── 📄 pg-deployment.yml                # deployment for the pg container (optional, we don't use pg anyways)
-│   └── 📄 pg-service.yml                   # k8s for the pg service (optional, we don't use pg anyways)
+│   ├── 📦 db-deployment.yml                # deployment for the postgres container
+│   ├── 💾 db-pvc.yml                       # persistent volume claim so we don't lose the data from the database
+│   ├── 🌐 db-service.yml                   # k8s service for the database
+│   ├── ⚙️ logger-config.yml                # config map for the project's env vars
+│   ├── 📦 logger-deployment.yml            # deployment for the logger service
+│   ├── 🌐 logger-service.yml               # k8s service for the logger
+│   ├── 📦 pg-deployment.yml                # deployment for the pg container (optional, we don't use pg anyways)
+│   └── 🌐 pg-service.yml                   # k8s for the pg service (optional, we don't use pg anyways)
 ├── 📁 logger-service
 │   ├── 🐳 Dockerfile                       # Dockerfile for building the logger image
 │   ├── 📁 db
-│   │   └── 📄 db.go                        # database module for the logger app
+│   │   └── 🛢️ db.go                        # database module for the logger app
 │   ├── 🐙 docker-compose.yml               # docker-compose for local development, run with this if you don't want to use k8s
-│   ├── 📄 go.mod                           # go module
-│   ├── 📄 go.sum                           # imports for the logger app
-│   ├── 📄 main.go                          # main for the logger service
+│   ├── 📦 go.mod                           # go module
+│   ├── 📦 go.sum                           # imports for the logger app
+│   ├── 🚀 main.go                          # main for the logger service
 │   └── 📁 ping            
 │       └── 📄 ping.go                      # data structure for the ping
 └── 📁 pinger-service
-    ├── 📄 go.mod                           # go module
-    ├── 📄 main.go                          # main for the pinger service
+    ├── 📦 go.mod                           # go module
+    ├── 🚀 main.go                          # main for the pinger service
     └── 📁 messages
-        └── 📄 messages.go                  # 20 random hardcoded messages
+        └── 💬 messages.go                  # 20 random hardcoded messages
 ```
