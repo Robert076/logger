@@ -36,4 +36,4 @@ kubectl apply -f kubernetes/
 kubectl port-forward service/logger-service 8080:8080
 ```
 
-5. Visit [http://localhost:8080/pings](localhost:8080/pings) on your browser.
+5. Visit [localhost:8080/pings](http://localhost:8080/pings) on your browser.
