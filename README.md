@@ -1,5 +1,5 @@
 # 🚀 logger app
-Contains 2 main services: One *spams* the other while the other *logs* the messages it received.
+Contains 2 main services: One *spams* the other with messages while the other *logs* the messages it received.
 
 🌐 First service: **Logger**
 - Every time the route `/ping` is being called with an *http post* request, it adds a log of the message in the request body.
