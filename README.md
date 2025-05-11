@@ -55,7 +55,7 @@ kubectl port-forward service/logger-service 8080:8080
 │   ├── 📦 logger-deployment.yml            # deployment for the logger service
 │   ├── 🌐 logger-service.yml               # k8s service for the logger
 │   ├── 📦 pg-deployment.yml                # deployment for the pg container (optional, we don't use pg anyways)
-│   └── 🌐 pg-service.yml                   # k8s for the pg service (optional, we don't use pg anyways)
+│   └── 🌐 pg-service.yml                   # k8s service for the pg service (optional, we don't use pg anyways)
 ├── 📁 logger-service
 │   ├── 🐳 Dockerfile                       # Dockerfile for building the logger image
 │   ├── 📁 db
